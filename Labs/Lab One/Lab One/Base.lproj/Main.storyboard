@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Favorite Animals-->
+        <scene sceneID="hNz-n2-bh7">
+            <objects>
+                <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="Lab_One" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Zk1-5o-dLJ">
+                                <rect key="frame" x="0.0" y="303.5" width="414" height="289"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Favorite Animals" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="KQZ-1w-vlD">
+                                        <rect key="frame" x="80.5" y="0.0" width="253" height="43"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G1H-Tg-nkT">
+                                        <rect key="frame" x="0.0" y="58" width="414" height="216"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="414" id="E6T-g7-yR3"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="dataSource" destination="9pv-A4-QxB" id="yk2-Ui-nkB"/>
+                                            <outlet property="delegate" destination="9pv-A4-QxB" id="lq2-Vb-uWs"/>
+                                        </connections>
+                                    </pickerView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5M-7J-77L">
+                                        <rect key="frame" x="207" y="289" width="0.0" height="0.0"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Zk1-5o-dLJ" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="XO4-82-x4N"/>
+                            <constraint firstItem="Zk1-5o-dLJ" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" id="XXK-dO-n0T"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Favorite Animals" image="heart" id="acW-dT-cKf"/>
+                    <connections>
+                        <outlet property="animalPicker" destination="G1H-Tg-nkT" id="vhw-MU-QxD"/>
+                        <outlet property="message" destination="A5M-7J-77L" id="CbN-ZH-mRS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="749.27536231884062" y="-320.08928571428572"/>
+        </scene>
+        <!--Find Animals-->
+        <scene sceneID="wg7-f3-ORb">
+            <objects>
+                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="Lab_One" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bdK-TZ-WBI">
+                                <rect key="frame" x="47.5" y="421.5" width="319" height="53"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <state key="normal" title="Find Animals Near Me"/>
+                                <connections>
+                                    <action selector="loadExternalSite:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="7va-Uq-dKw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="bdK-TZ-WBI" firstAttribute="centerY" secondItem="QS5-Rx-YEW" secondAttribute="centerY" id="2vd-19-rOP"/>
+                            <constraint firstItem="bdK-TZ-WBI" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="KVd-r9-LUP"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Find Animals" image="location" id="cPa-gy-q4n"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="360"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="yl2-sM-qoP">
+            <objects>
+                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                        <rect key="frame" x="0.0" y="975" width="768" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="AW1-Ve-6Rh" kind="relationship" relationship="viewControllers" id="hSG-iQ-PKn"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--Record-->
+        <scene sceneID="q8p-gg-aan">
+            <objects>
+                <viewController id="AW1-Ve-6Rh" customClass="ThirdViewController" customModule="Lab_One" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tqU-NS-XCc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="iBV-lc-3sk">
+                                <rect key="frame" x="55" y="371" width="304" height="154"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3u2-C9-yEh">
+                                        <rect key="frame" x="0.0" y="0.0" width="304" height="46"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <state key="normal" title="Record Animal Messages"/>
+                                        <connections>
+                                            <action selector="recordAudio:" destination="AW1-Ve-6Rh" eventType="touchUpInside" id="Jqs-NM-sdI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sXm-ro-us9">
+                                        <rect key="frame" x="0.0" y="54" width="304" height="46"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <state key="normal" title="Play Messages"/>
+                                        <connections>
+                                            <action selector="playSound:" destination="AW1-Ve-6Rh" eventType="touchUpInside" id="ojr-q5-NqI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMy-IX-jw2">
+                                        <rect key="frame" x="0.0" y="108" width="304" height="46"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <state key="normal" title="Stop Messages"/>
+                                        <connections>
+                                            <action selector="stopAudio:" destination="AW1-Ve-6Rh" eventType="touchUpInside" id="HGx-tx-CDL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="iBV-lc-3sk" firstAttribute="centerX" secondItem="tqU-NS-XCc" secondAttribute="centerX" id="rcF-gn-SVU"/>
+                            <constraint firstItem="iBV-lc-3sk" firstAttribute="centerY" secondItem="tqU-NS-XCc" secondAttribute="centerY" id="t28-A8-aM5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Uuq-Pd-ctD"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Record" image="record" id="lIK-Jj-viE"/>
+                    <connections>
+                        <outlet property="PlayButton" destination="sXm-ro-us9" id="7PX-AM-9jb"/>
+                        <outlet property="RecordButton" destination="3u2-C9-yEh" id="PPd-Iy-G3E"/>
+                        <outlet property="StopButton" destination="DMy-IX-jw2" id="ERt-DO-SeL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rxn-jm-JwO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="800"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="heart" width="50" height="50"/>
+        <image name="location" width="50" height="50"/>
+        <image name="record" width="50" height="50"/>
+    </resources>
+</document>

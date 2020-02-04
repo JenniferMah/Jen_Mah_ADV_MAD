@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Animal</key>
+		<string>Horses</string>
+		<key>Breed</key>
+		<array>
+			<string>Mustang</string>
+			<string>Percheron</string>
+			<string>Miniature Horse</string>
+			<string>Andalusian</string>
+			<string>Clydesdale</string>
+			<string>Icelandic Horse</string>
+		</array>
+	</dict>
+	<dict>
+		<key>Animal</key>
+		<string>Cats</string>
+		<key>Breed</key>
+		<array>
+			<string>Bengal Cat</string>
+			<string>Maine Coon</string>
+			<string>Siamese Cat</string>
+			<string>Ragdoll</string>
+			<string>Shorthair</string>
+			<string>Munchkin Cat</string>
+		</array>
+	</dict>
+	<dict>
+		<key>Animal</key>
+		<string>Dogs</string>
+		<key>Breed</key>
+		<array>
+			<string>Siberian Husky</string>
+			<string>Lab</string>
+			<string>Beagle</string>
+			<string>Dachshund</string>
+			<string>Great Dane</string>
+			<string>Corgi</string>
+		</array>
+	</dict>
+</array>
+</plist>

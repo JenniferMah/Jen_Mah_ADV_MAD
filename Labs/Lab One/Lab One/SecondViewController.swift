@@ -12,7 +12,7 @@ class SecondViewController: UIViewController {
 //Scheme for each app you need to open is unique and dont forget to add to manaifest
 
     let mapsScheme = "mapitem://"
-    let googleMapsScheme = "googlemaps://"
+    let googleMapsScheme = "comgooglemaps://"
     let searchScheme = "https://www.animalhumanesociety.org/adoption"
 
 
@@ -35,14 +35,14 @@ class SecondViewController: UIViewController {
    }
        
     @IBAction func loadExternalSite(_ sender: Any) {
-        let appleMapsInstalled = checkAvalible(scheme: mapsScheme)
+        let searchInstalled = checkAvalible(scheme: searchScheme)
         let googleMapsInstalled=checkAvalible(scheme: googleMapsScheme)
-        if appleMapsInstalled{
-           openExternalApps(scheme: mapsScheme)
+        if searchInstalled{
+            openExternalApps(scheme: searchScheme)
         }else if googleMapsInstalled{
            openExternalApps(scheme: googleMapsScheme)
         }else{
-           openExternalApps(scheme: searchScheme)
+           openExternalApps(scheme: mapsScheme)
         }
     }
     

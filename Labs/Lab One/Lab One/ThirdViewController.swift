@@ -60,12 +60,10 @@ class ThirdViewController: UIViewController,AVAudioPlayerDelegate, AVAudioRecord
     //Button Methods
     @IBAction func recordAudio(_ sender: Any) {
         if let recorder = audioRecorder {
-            //check to make sure we aren't already recording
             if recorder.isRecording == false {
-                //enable the stop button and start recording
                 PlayButton.isEnabled = false
                 StopButton.isEnabled = true
-                recorder.delegate = self //allows recorder to respond to errors and complete the recording
+                recorder.delegate = self
                 recorder.record()
             }
         } else {
@@ -80,9 +78,9 @@ class ThirdViewController: UIViewController,AVAudioPlayerDelegate, AVAudioRecord
             do{
                 try audioPlayer = AVAudioPlayer(contentsOf: (audioRecorder?.url)!)
                 try audioSession.setCategory(AVAudioSession.Category.playback)
-                audioPlayer!.delegate = self //respond to it's own events
-                audioPlayer!.prepareToPlay() // preload audio
-                audioPlayer!.play() //plays audio file
+                audioPlayer!.delegate = self
+                audioPlayer!.prepareToPlay()
+                audioPlayer!.play()
             }catch {
                 print("can't play audio")
             }
@@ -93,13 +91,10 @@ class ThirdViewController: UIViewController,AVAudioPlayerDelegate, AVAudioRecord
         StopButton.isEnabled = false
         PlayButton.isEnabled = true
         RecordButton.isEnabled = true
-       //If it is reccording
        if audioRecorder?.isRecording == true {
            audioRecorder?.stop()
        }else{
-           //it is playing
            audioPlayer?.stop()
-           //reset session mode
            do{
                try audioSession.setCategory(AVAudioSession.Category.playAndRecord)
            }catch{
@@ -108,11 +103,9 @@ class ThirdViewController: UIViewController,AVAudioPlayerDelegate, AVAudioRecord
        }
     }
     
-    //audio player delegate method to change buttons when audio finishes playing
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         RecordButton.isEnabled = true
         StopButton.isEnabled = false
-        //reset av session mode to optimize recording
         do {
             try audioSession.setCategory(AVAudioSession.Category.playAndRecord)
         } catch {

@@ -41,14 +41,11 @@ class SearchResultsController: UITableViewController, UISearchResultsUpdating {
         let search = searchController.searchBar.text
         filteredEntries.removeAll()
         if search?.isEmpty == false {
-            //closure to filter through all words
             let searchFilter: (String) -> Bool = {word in
                 let range = word.range(of: search!, options: .caseInsensitive)
-                //range will be nil if the character sequence is no present in the given word
                 return range != nil
             }
             
-            //use the closure to filter through all words
             filteredEntries = allEntries.filter(searchFilter)
         }
         //update the table with relevant words

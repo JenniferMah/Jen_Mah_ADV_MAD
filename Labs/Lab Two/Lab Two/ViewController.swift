@@ -41,9 +41,7 @@ class ViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "entrySegue" {
             let detailVC = segue.destination as! DetailTableViewController
-            //get the cell that triggered the segue (need to downcast)
             let indexPath = tableView.indexPath(for: sender as! UITableViewCell)
-            //set data in destination controller
             if let selection = indexPath?.row {
                 detailVC.selectedMonth = selection
                 detailVC.title = monthList[selection]
@@ -51,13 +49,9 @@ class ViewController: UITableViewController {
             }
         }else if segue.identifier == "moreInfo" {
             let infoVC = segue.destination as! InfoTableViewController
-            //get the selected cell
             let indexPath = tableView.indexPath(for: sender as! UITableViewCell)
-            //set the continent name in destination
             infoVC.month = monthList[indexPath!.row]
-            //get the country list
             let entryList = diaryDataController.getEntry(idx: indexPath!.row)
-            //set number of countries (cast integer to string)
             infoVC.entryNumbers = String(entryList.count)
             infoVC.title = monthList[indexPath!.row]
         }

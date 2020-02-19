@@ -102,7 +102,6 @@ class DiaryDataController {
     
 //    MARK:Methods
     
-    //fetch all the continents
     func getMonths() -> [String] {
         //init empty array
         var allMonths = [String]()
@@ -113,17 +112,15 @@ class DiaryDataController {
         return allMonths
     }
     
-    //get array of countries based on continent
+   
     func getEntry(idx: Int) -> [String] {
         return allData[idx].entry
     }
     
-    //add a country
     func addEntry(monthIdx: Int, newEntry: String, entryIdx: Int) {
         allData[monthIdx].entry.insert(newEntry, at: entryIdx)
     }
     
-    //delete a country
     func deleteEntry(monthIdx: Int, entryIdx: Int) {
         allData[monthIdx].entry.remove(at: entryIdx)
     }

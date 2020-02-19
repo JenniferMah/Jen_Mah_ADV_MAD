@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>entry</key>
+		<array>
+			<string>First day of class</string>
+			<string>Back to school</string>
+			<string>New Years</string>
+		</array>
+		<key>month</key>
+		<string>Janurary</string>
+	</dict>
+	<dict>
+		<key>entry</key>
+		<array>
+			<string>Weekend Trip</string>
+			<string>Valentine’s Day</string>
+		</array>
+		<key>month</key>
+		<string>February</string>
+	</dict>
+	<dict>
+		<key>entry</key>
+		<array/>
+		<key>month</key>
+		<string>March</string>
+	</dict>
+	<dict>
+		<key>entry</key>
+		<array/>
+		<key>month</key>
+		<string>April</string>
+	</dict>
+	<dict>
+		<key>entry</key>
+		<array/>
+		<key>month</key>
+		<string>May</string>
+	</dict>
+	<dict>
+		<key>entry</key>
+		<array/>
+		<key>month</key>
+		<string>June</string>
+	</dict>
+	<dict>
+		<key>entry</key>
+		<array/>
+		<key>month</key>
+		<string>July</string>
+	</dict>
+	<dict>
+		<key>entry</key>
+		<array/>
+		<key>month</key>
+		<string>August</string>
+	</dict>
+	<dict>
+		<key>entry</key>
+		<array/>
+		<key>month</key>
+		<string>September</string>
+	</dict>
+	<dict>
+		<key>entry</key>
+		<array/>
+		<key>month</key>
+		<string>October</string>
+	</dict>
+	<dict>
+		<key>entry</key>
+		<array/>
+		<key>month</key>
+		<string>November</string>
+	</dict>
+	<dict>
+		<key>entry</key>
+		<array/>
+		<key>month</key>
+		<string>December</string>
+	</dict>
+</array>
+</plist>

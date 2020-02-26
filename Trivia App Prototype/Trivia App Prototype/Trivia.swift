@@ -11,7 +11,7 @@ import Foundation
 struct Trivia: Decodable {
     let question: String
     let answer: String
-    let choices: String
+    let choices = [String]()
 }
 
 struct TriviaData: Decodable {

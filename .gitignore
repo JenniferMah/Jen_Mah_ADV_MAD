@@ -2,6 +2,11 @@
 # Created by https://www.gitignore.io/api/osx,java,xcode,swift,kotlin,androidstudio
 # Edit at https://www.gitignore.io/?templates=osx,java,xcode,swift,kotlin,androidstudio
 
+# Firebase Config Files
+GoogleService-Info.plist
+Pods/
+
+
 ### Java ###
 # Compiled class file
 *.class

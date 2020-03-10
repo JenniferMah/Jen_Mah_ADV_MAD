@@ -14,7 +14,7 @@ class TriviaDataController{
 
     
     func loadJson(category: String) {
-        let urlPath = "https://opentdb.com/api.php?amount=20&category=" + category
+        let urlPath = "https://opentdb.com/api.php?amount=20&category=" + category + "&type=multiple"
         
         guard let url = URL(string: urlPath) else {
             print("bad url")

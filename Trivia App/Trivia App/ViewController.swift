@@ -36,7 +36,7 @@ class ViewController: UITableViewController {
             //downcast destination vc
             let Quiz = segue.destination as! QuestionViewController
             //set the title
-            Quiz.title = "Trivia Night"
+            Quiz.title = "Trivia Categories"
             //pass the data
             Quiz.results = data
             Quiz.category = catagoryName

@@ -11,8 +11,7 @@ import Foundation
 struct Trivia: Decodable {
     let question: String
     let correct_answer: String
-    let category : String //ADDED
-    // let incorrect_answers = [String]()  //Won't need this unless I change layout
+    let incorrect_answers: [String]
 }
 
 struct TriviaData: Decodable {

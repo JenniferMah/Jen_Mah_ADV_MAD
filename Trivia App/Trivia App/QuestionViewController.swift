@@ -15,7 +15,6 @@ class QuestionViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var question: UILabel!
     @IBOutlet weak var QuestionsLeft: UILabel!
     @IBOutlet weak var skipsLeft: UILabel!
-    
     @IBOutlet weak var skipButton: UIButton!
     //Answer buttons
     @IBOutlet weak var b1: UIButton!
@@ -30,19 +29,18 @@ class QuestionViewController: UIViewController,UITextFieldDelegate {
     var skipIndex = 3
     var QuestionsPlayed = 5
     var category = String()
-    var randomInt = Int()
-    var answersArray = [String()]
+    var scoreToWin = Int()
+    var answerChoicesArray = [String()]
     var correctAnswer = String()
-    var dc = TriviaDataController()
     
 
     override func viewDidAppear(_ animated: Bool) {
-       randomInt = Int.random(in: 1...5)
+        scoreToWin = Int.random(in: 1...5)
         nextQuestion()
         changePhoto(category:category)
     }
     
-    //MARK:reset game //WORK ON MAKING A SECOND CALL FOR NEW QUESTIONS
+    //MARK:reset game
     func resetGame(){
         scoreNumber = 0
         skipIndex = 3
@@ -55,17 +53,15 @@ class QuestionViewController: UIViewController,UITextFieldDelegate {
     }
     
     func checkScore(){
-        if QuestionsPlayed <= 0{ //played 5 questions
-            if scoreNumber >= randomInt{
+        if QuestionsPlayed <= 0{
+            if scoreNumber >= scoreToWin {
                 let alert = UIAlertController(title: "Winner!", message: "You Won! You get to decide in the argument. Would you like to play again?", preferredStyle: UIAlertController.Style.alert)
-                // add the actions (buttons)
                 alert.addAction(UIAlertAction(title: "Replay", style: UIAlertAction.Style.destructive, handler: { action in
                     self.resetGame()
                 }))
                 alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: { action in
                     self.navigationController?.popToRootViewController(animated: true)
                 }))
-                // show the alert
                 self.present(alert, animated: true, completion: nil)
             } else{
                 let alert = UIAlertController(title: "Lost", message: "You lost. Your opponent gets to decide in the argument. Would you like to play agian?", preferredStyle: UIAlertController.Style.alert)
@@ -79,31 +75,31 @@ class QuestionViewController: UIViewController,UITextFieldDelegate {
                 // show the alert
                 self.present(alert, animated: true, completion: nil)
             }
-        }else{
-            if scoreNumber < 0{
-                let alert = UIAlertController(title: "Lost", message: "You lost. Your opponent gets to decide in the argument. Would you like to play agian?", preferredStyle: UIAlertController.Style.alert)
-                // add the actions (buttons)
-                alert.addAction(UIAlertAction(title: "Replay", style: UIAlertAction.Style.destructive, handler: { action in
-                    self.resetGame()
-                }))
-                alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: { action in
-                    self.navigationController?.popToRootViewController(animated: true)
-                }))
-                // show the alert
-                self.present(alert, animated: true, completion: nil)
-            }
         }
+        if scoreNumber < 0{
+            let alert = UIAlertController(title: "Lost", message: "You lost. Your opponent gets to decide in the argument. Would you like to play agian?", preferredStyle: UIAlertController.Style.alert)
+            // add the actions (buttons)
+            alert.addAction(UIAlertAction(title: "Replay", style: UIAlertAction.Style.destructive, handler: { action in
+                self.resetGame()
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: { action in
+                self.navigationController?.popToRootViewController(animated: true)
+            }))
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
+        }
+        
     }
     
     
     func scrambleAnswers(){
-        answersArray = results[gameIndex].incorrect_answers
-        answersArray.append(results[gameIndex].correct_answer)
+        answerChoicesArray = results[gameIndex].incorrect_answers
+        answerChoicesArray.append(results[gameIndex].correct_answer)
         for i in 0...3{
-            let decodedAnswers = answersArray[i].stringByDecodingHTMLEntities
-            answersArray[i] = decodedAnswers
+            let decodedAnswers = answerChoicesArray[i].stringByDecodingHTMLEntities
+            answerChoicesArray[i] = decodedAnswers
         }
-        answersArray.shuffle()
+        answerChoicesArray.shuffle()
     }
     
     
@@ -115,10 +111,10 @@ class QuestionViewController: UIViewController,UITextFieldDelegate {
         let DecodedQuestion = EncodedQuestion.stringByDecodingHTMLEntities
         
         question.text = DecodedQuestion
-        b1.setTitle(answersArray[0], for: .normal)
-        b2.setTitle(answersArray[1], for: .normal)
-        b3.setTitle(answersArray[2], for: .normal)
-        b4.setTitle(answersArray[3], for: .normal)
+        b1.setTitle(answerChoicesArray[0], for: .normal)
+        b2.setTitle(answerChoicesArray[1], for: .normal)
+        b3.setTitle(answerChoicesArray[2], for: .normal)
+        b4.setTitle(answerChoicesArray[3], for: .normal)
         correctAnswer = results[gameIndex].correct_answer.stringByDecodingHTMLEntities
         print(correctAnswer)
         
@@ -201,14 +197,32 @@ class QuestionViewController: UIViewController,UITextFieldDelegate {
         }
     }
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         question.text = ""
         skipsLeft.text = String(skipIndex)
         QuestionsLeft.text = String(QuestionsPlayed)
-//        skipButton.layer.borderWidth = 1.0
-//        skipButton.layer.borderColor = UIColor.red.cgColor
-//        skipButton.layer.cornerRadius = 5.0
+        
+        //UI adjustments
+        b1.layer.borderWidth = 2
+        b1.layer.borderColor = UIColor.orange.cgColor
+        b1.layer.cornerRadius = 15
+
+        b2.layer.borderWidth = 2
+        b2.layer.borderColor = UIColor.orange.cgColor
+        b2.layer.cornerRadius = 15
+
+        b3.layer.borderWidth = 2
+        b3.layer.borderColor = UIColor.orange.cgColor
+        b3.layer.cornerRadius = 15
+
+        b4.layer.borderWidth = 2
+        b4.layer.borderColor = UIColor.orange.cgColor
+        b4.layer.cornerRadius = 15
+
+        skipButton.layer.cornerRadius = 5.0
         // Do any additional setup after loading the view.
     }
     

@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ViewController: UITableViewController {
+class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSource {
+  
+    
     //hold all my categories
     var categoriesList = ["Film", "Books", "Music", "Musicals & Theaters", "TV", "Video Games", "Board Games","Mythology", "Animals","Celebrities", "Comics", "Anime & Manga"]
     var selectedCategory = String()
@@ -16,12 +18,27 @@ class ViewController: UITableViewController {
     var data = [Trivia]()
     var catagoryName = String()
     
+    
+    //TableView
+    let tableview: UITableView = {
+        let tv = UITableView()
+        tv.backgroundColor = UIColor.white
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.separatorColor = UIColor.white
+        return tv
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        title = "Trivia Categories"
+        setupTableView()
         dc.onDataUpdate = {[weak self] (data:[Trivia]) in self?.searchDone(triviaQuestions: data)}
-        
+    }
+    
+    func setTableViewDelegates(){
+        tableview.delegate = self
+        tableview.dataSource = self
     }
     
     func searchDone(triviaQuestions: [Trivia]) {
@@ -36,7 +53,7 @@ class ViewController: UITableViewController {
             //downcast destination vc
             let Quiz = segue.destination as! QuestionViewController
             //set the title
-            Quiz.title = "Trivia Categories"
+            Quiz.title = catagoryName
             //pass the data
             Quiz.results = data
             Quiz.category = catagoryName
@@ -77,23 +94,38 @@ class ViewController: UITableViewController {
         }
         return categoryNumber
     }
+    
+    func setupTableView() {
+        setTableViewDelegates()
+        tableview.register(categoryCell.self, forCellReuseIdentifier: "cellId")
+        
+        view.addSubview(tableview)
+        
+        NSLayoutConstraint.activate([
+            tableview.topAnchor.constraint(equalTo: self.view.topAnchor),
+            tableview.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            tableview.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            tableview.leftAnchor.constraint(equalTo: self.view.leftAnchor)
+        ])
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return categoriesList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableview.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! categoryCell
+        cell.backgroundColor = UIColor.white
+        cell.cellLabel.text = categoriesList[indexPath.row]
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-           return categoriesList.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-           let cell = tableView.dequeueReusableCell(withIdentifier: "category",for:indexPath)
-           //Set text label based on idex of cell
-           cell.textLabel?.text = categoriesList[indexPath.row]
-           return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //CASE STATEMENT FUNCTION
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let numberForURL = numberItem(category: categoriesList[indexPath.row])
         dc.loadJson(category: numberForURL)
-        
+
     }
 
 }

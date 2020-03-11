@@ -208,19 +208,18 @@ class QuestionViewController: UIViewController,UITextFieldDelegate {
         //UI adjustments
         b1.layer.borderWidth = 2
         b1.layer.borderColor = UIColor.orange.cgColor
-        b1.layer.cornerRadius = 15
-
+        b1.layer.cornerRadius = 25
         b2.layer.borderWidth = 2
         b2.layer.borderColor = UIColor.orange.cgColor
-        b2.layer.cornerRadius = 15
+        b2.layer.cornerRadius = 25
 
         b3.layer.borderWidth = 2
         b3.layer.borderColor = UIColor.orange.cgColor
-        b3.layer.cornerRadius = 15
+        b3.layer.cornerRadius = 25
 
         b4.layer.borderWidth = 2
         b4.layer.borderColor = UIColor.orange.cgColor
-        b4.layer.cornerRadius = 15
+        b4.layer.cornerRadius = 25
 
         skipButton.layer.cornerRadius = 5.0
         // Do any additional setup after loading the view.

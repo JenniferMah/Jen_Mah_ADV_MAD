@@ -26,11 +26,12 @@ class SearchFragment : Fragment(), SearchRecyclerAdapter.DrinkItemListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        searchViewModel = ViewModelProvider(requireActivity()).get(SharedSearchViewModel::class.java)
+
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
         val root = inflater.inflate(R.layout.fragment_search, container, false)
         recyclerView = root.findViewById(R.id.recyclerView)
 
-        searchViewModel = ViewModelProvider(requireActivity()).get(SharedSearchViewModel::class.java)
 
         searchViewModel.drinksData.observe(viewLifecycleOwner, Observer {
             val adapter = SearchRecyclerAdapter(requireContext(), it, this)
@@ -40,7 +41,7 @@ class SearchFragment : Fragment(), SearchRecyclerAdapter.DrinkItemListener {
     }
 
     override fun onDrinkItemClick(drink: DrinksDetails) {
-        searchViewModel.selectedDrink.value = drink
-        navController.navigate(R.id.action_searchFragment_to_detailFragment)
+        //searchViewModel.selectedDrink.value = drink
+        //navController.navigate(R.id.action_searchFragment_to_detailFragment)
     }
 }

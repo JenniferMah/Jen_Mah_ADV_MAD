@@ -31,7 +31,9 @@ class DrinksRepository(val app: Application) {
     private var service:cocktailDBService
 
     val drinkSelectedObserver =  Observer<DrinksDetails> {
-        //getDrinksData()
+        CoroutineScope(Dispatchers.IO).launch {
+            getDrinksData("Gin")
+        }
     }
 
     init {

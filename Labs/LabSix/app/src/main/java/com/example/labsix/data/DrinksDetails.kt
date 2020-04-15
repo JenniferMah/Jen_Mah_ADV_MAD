@@ -5,14 +5,8 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class SearchResponse(
-    val results: Drinks
+    val results: Set<DrinksDetails>
 )
-
-@JsonClass(generateAdapter = true)
-data class Drinks(
-    val drinkSet: Set<DrinksDetails>
-)
-
 
 @JsonClass(generateAdapter = true)
 data class DrinksDetails (

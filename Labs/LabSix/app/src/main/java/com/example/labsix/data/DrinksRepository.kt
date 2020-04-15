@@ -52,8 +52,9 @@ class DrinksRepository(val app: Application) {
         if(NetworkHelper.networkConnected(app)) {
             val response = service.searchCocktails(searchTerm).execute()
             if(response.body() != null) {
+                Log.i(LOG_TAG,"THIS MAKES IT INTO THE CALL")
                 val responseBody = response.body()
-                drinkData.postValue(responseBody?.results?.toList())
+                drinkData.postValue(responseBody?.drinks?.toList())
             } else {
                 Log.e(LOG_TAG, "Could not search drinks. Error code: ${response.code()}")
             }

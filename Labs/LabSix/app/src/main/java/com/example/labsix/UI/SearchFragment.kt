@@ -32,7 +32,6 @@ class SearchFragment : Fragment(), SearchRecyclerAdapter.DrinkItemListener {
         val root = inflater.inflate(R.layout.fragment_search, container, false)
         recyclerView = root.findViewById(R.id.recyclerView)
 
-
         searchViewModel.drinksData.observe(viewLifecycleOwner, Observer {
             val adapter = SearchRecyclerAdapter(requireContext(), it, this)
             recyclerView.adapter = adapter

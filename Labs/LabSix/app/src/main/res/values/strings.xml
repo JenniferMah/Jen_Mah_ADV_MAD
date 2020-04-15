@@ -3,7 +3,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="recipe_imgage">image</string>
     <string name="title_text">title</string>
     <string name="instructions">Instructions</string>
+    <string name="drink_image">drinkImage</string>
 </resources>

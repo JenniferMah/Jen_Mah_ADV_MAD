@@ -2,10 +2,9 @@ package com.example.labsix.data
 
 import com.squareup.moshi.JsonClass
 
-
 @JsonClass(generateAdapter = true)
 data class SearchResponse(
-    val results: Set<DrinksDetails>
+    val drinks: Set<DrinksDetails>
 )
 
 @JsonClass(generateAdapter = true)

@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.labsix.R
 
 /**
@@ -38,6 +39,9 @@ class DetailFragment : Fragment() {
             drinkTitleTextView.text = it.strDrink
             instructionsTextView.text = it.strInstructions
             //SHOULD ADD THE PHOTO?
+            Glide.with(this)
+                .load(it.strDrinkThumb)
+                .into(imageView)
         })
 
 

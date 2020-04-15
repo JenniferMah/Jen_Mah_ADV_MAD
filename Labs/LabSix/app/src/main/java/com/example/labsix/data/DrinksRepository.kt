@@ -30,20 +30,14 @@ class DrinksRepository(val app: Application) {
 
     private var service:cocktailDBService
 
-    val drinkSelectedObserver =  Observer<DrinksDetails> {
-        CoroutineScope(Dispatchers.IO).launch {
-            getDrinksData("Gin")
-        }
+    init {
+        service = retrofit.create(cocktailDBService::class.java)
     }
 
-    init {
-        Log.i(LOG_TAG,"TESTING")
+    val searchTermEntered = Observer<String> {
         CoroutineScope(Dispatchers.IO).launch {
-            getDrinksData("Gin")
+            getDrinksData(it)
         }
-        service = retrofit.create(cocktailDBService::class.java)
-
-
     }
 
     //get the raw text from our json file and update the LiveData object with the parsed data

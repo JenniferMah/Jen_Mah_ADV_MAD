@@ -13,15 +13,15 @@ class SharedSearchViewModel(app: Application) : AndroidViewModel(app) {
 
     val drinksData = drinksRepo.drinkData
     val selectedDrink = MutableLiveData<DrinksDetails>()
-    val drinkDetails = drinksRepo.drinkData
+    val userInputSearch = MutableLiveData<String>()
 
     init {
-        selectedDrink.observeForever(drinksRepo.drinkSelectedObserver)
+        userInputSearch.observeForever(drinksRepo.searchTermEntered)
 
     }
 
     override fun onCleared() {
-        selectedDrink.removeObserver(drinksRepo.drinkSelectedObserver)
+        userInputSearch.removeObserver(drinksRepo.searchTermEntered)
         super.onCleared()
     }
 

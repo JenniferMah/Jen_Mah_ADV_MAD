@@ -6,4 +6,6 @@
     <string name="title_text">title</string>
     <string name="instructions">Instructions</string>
     <string name="drink_image">drinkImage</string>
+    <string name="search_drinks">Drink Name</string>
+    <string name="search">search</string>
 </resources>

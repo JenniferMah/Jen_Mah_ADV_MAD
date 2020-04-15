@@ -37,6 +37,7 @@ class DrinksRepository(val app: Application) {
     }
 
     init {
+        Log.i(LOG_TAG,"TESTING")
         CoroutineScope(Dispatchers.IO).launch {
             getDrinksData("Gin")
         }

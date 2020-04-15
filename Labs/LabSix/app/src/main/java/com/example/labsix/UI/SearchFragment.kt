@@ -41,7 +41,7 @@ class SearchFragment : Fragment(), SearchRecyclerAdapter.DrinkItemListener {
     }
 
     override fun onDrinkItemClick(drink: DrinksDetails) {
-        //searchViewModel.selectedDrink.value = drink
-        //navController.navigate(R.id.action_searchFragment_to_detailFragment)
+        searchViewModel.selectedDrink.value = drink
+        navController.navigate(R.id.action_searchFragment_to_detailFragment)
     }
 }

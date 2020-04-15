@@ -30,12 +30,8 @@ class DrinksRepository(val app: Application) {
 
     init {
         getDrinksData()
-
-        Log.i("Drinks","TEST")
         service = retrofit.create(cocktailDBService::class.java)
-        Log.i("Drinks","AFTER")
 
-        Log.i("Drinks","AFTER AFTER")
 
     }
 

@@ -11,7 +11,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.Glide
 import com.example.labsix.R
 
 /**
@@ -35,15 +34,13 @@ class DetailFragment : Fragment() {
         sharedSearchViewModel = ViewModelProvider(requireActivity()).get(SharedSearchViewModel::class.java)
 
         sharedSearchViewModel.selectedDrink.observe(viewLifecycleOwner, Observer {
-           Log.i("TEST", "MOOP")
             (activity as AppCompatActivity?)?.supportActionBar?.title = it.strDrink
             drinkTitleTextView.text = it.strDrink
             instructionsTextView.text = it.strInstructions
-            //SHOULD ADD THE PHOTO
+            //SHOULD ADD THE PHOTO?
         })
 
 
-        // Inflate the layout for this fragment
         return root
     }
 

@@ -1,4 +1,4 @@
-package com.example.labsix.ui
+package com.example.labsix.ui.search
 
 import android.app.Application
 import android.util.Log

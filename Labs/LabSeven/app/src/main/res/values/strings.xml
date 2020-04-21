@@ -8,4 +8,6 @@
     <string name="drink_image">drinkImage</string>
     <string name="search_drinks">Drink Name</string>
     <string name="search">search</string>
+    <string name="title_search">Drinks</string>
+    <string name="title_favorites">Favorite Drinks</string>
 </resources>

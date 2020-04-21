@@ -1,4 +1,4 @@
-package com.example.labsix.ui
+package com.example.labsix.ui.search
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -33,7 +33,11 @@ class SearchResultsFragment : Fragment(), SearchRecyclerAdapter.DrinkItemListene
         recyclerView = root.findViewById(R.id.recyclerView)
 
         searchViewModel.drinksData.observe(viewLifecycleOwner, Observer {
-            val adapter = SearchRecyclerAdapter(requireContext(), it, this)
+            val adapter = SearchRecyclerAdapter(
+                requireContext(),
+                it,
+                this
+            )
             recyclerView.adapter = adapter
         })
         // Inflate the layout for this fragment

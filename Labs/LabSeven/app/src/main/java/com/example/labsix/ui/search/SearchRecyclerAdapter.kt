@@ -1,4 +1,4 @@
-package com.example.labsix.ui
+package com.example.labsix.ui.search
 
 import android.content.Context
 import android.view.LayoutInflater

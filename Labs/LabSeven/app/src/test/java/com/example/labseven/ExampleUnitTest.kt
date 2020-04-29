@@ -1,4 +1,4 @@
-package com.example.labsix
+package com.example.labseven
 
 import org.junit.Test
 

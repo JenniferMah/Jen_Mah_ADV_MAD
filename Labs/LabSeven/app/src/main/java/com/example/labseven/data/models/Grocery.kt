@@ -9,8 +9,8 @@ data class GroceryMember(
     val itemLocation: String,
     val itemAddedDate: Date
 ){
-    fun getGrocery(): GroceryMember{
-        return GroceryMember(
+    fun getGrocery(): com.example.labseven.data.database.saved.GroceryMember{
+        return com.example.labseven.data.database.saved.GroceryMember(
             item_id,
             itemName,
             itemQuantity,
@@ -19,14 +19,15 @@ data class GroceryMember(
         )
     }
     companion object{
-        fun fromRoomGrocery(grocery: GroceryMember): com.example.labseven.data.database.saved.GroceryMember{
-            return com.example.labseven.data.database.saved.GroceryMember(
+        fun fromDatabaseGrocery(grocery: com.example.labseven.data.database.saved.GroceryMember): GroceryMember{
+            return GroceryMember(
                 grocery.item_id,
                 grocery.itemName,
                 grocery.itemQuantity,
                 grocery.itemLocation,
                 grocery.itemAddedDate
             )
+
         }
     }
 

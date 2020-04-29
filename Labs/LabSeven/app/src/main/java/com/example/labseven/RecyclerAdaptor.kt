@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.labseven.data.database.saved.GroceryMember
+import com.example.labseven.data.models.GroceryMember
 
 class RecyclerAdaptor(var groceryList:List<GroceryMember>, val itemListener:GroceryListener) : RecyclerView.Adapter<RecyclerAdaptor.ViewHolder>()  {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

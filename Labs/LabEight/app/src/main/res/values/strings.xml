@@ -4,4 +4,5 @@
     <string name="groceryItem">Grocery Item</string>
     <string name="submit">Add to List</string>
     <string name="number">Quantity</string>
+    <string name="ListName">Grocery List</string>
 </resources>

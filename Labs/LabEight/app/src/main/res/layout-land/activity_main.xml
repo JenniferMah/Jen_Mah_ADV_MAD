@@ -31,26 +31,25 @@
 
     <EditText
         android:id="@+id/storeLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_width="230dp"
+        android:layout_height="52dp"
         android:ems="10"
         android:hint="@string/location"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/submitButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.305"
+        app:layout_constraintStart_toEndOf="@+id/editText" />
 
     <EditText
         android:id="@+id/itemName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_width="220dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
         android:ems="10"
         android:hint="@string/groceryItem"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/submitButton"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -68,8 +67,8 @@
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
         android:background="#48CFAFFD"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/itemName"
@@ -82,13 +81,12 @@
         android:id="@+id/editText"
         android:layout_width="213dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="20dp"
         android:ems="10"
         android:hint="@string/number"
         android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/storeLocation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/submitButton"
+        app:layout_constraintStart_toEndOf="@+id/itemName" />
 
     <TextView
         android:id="@+id/textView3"

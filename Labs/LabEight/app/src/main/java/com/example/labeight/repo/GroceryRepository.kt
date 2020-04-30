@@ -30,16 +30,17 @@ class GroceryRepository(val app:Application) {
     }
 
     private  fun parseAllData(result:QuerySnapshot){
+        allGrocery = mutableListOf<GroceryItem>() //need this to be empty again so that we don't have repeating items
         for (doc in result){
             //get all of the data and cast to correct types
             val id: Int = doc.id.toInt()
             val location: String = doc.getString("location")!!
             val name: String = doc.getString("name")!!
             //THIS IS NOT WORKING
-            //val quantity: Int = (doc.get("quantity") as String).toInt()
+            val quantity: Int = (doc.get("quantity") as Long).toInt()
 
             //add item to the mutable list
-            allGrocery.add(GroceryItem(id, location,name, 1))
+            allGrocery.add(GroceryItem(id, location,name, quantity))
         }
         Log.i("TEST", "All data: $allGrocery")
         groceryList.value = allGrocery

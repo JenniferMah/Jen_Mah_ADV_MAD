@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity(), RecyclerAdaptor.GroceryListener {
 
         groceryVM.groceryList.observe(this, Observer {
             adapter.groceryList = it
-            Log.i("TEST","MEEP")
             adapter.notifyDataSetChanged()
         })
 

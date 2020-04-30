@@ -72,7 +72,7 @@
         android:layout_height="50dp"
         android:ems="10"
         android:hint="@string/number"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/itemName" />

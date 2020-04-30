@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity(), FragmentManager.OnBackStackChangedList
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+//        ?
         val navController = findNavController(R.id.nav_host_fragment)
     }
     override fun onSupportNavigateUp(): Boolean {

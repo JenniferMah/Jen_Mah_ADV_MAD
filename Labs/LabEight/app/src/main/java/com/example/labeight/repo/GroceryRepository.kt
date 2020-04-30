@@ -36,7 +36,7 @@ class GroceryRepository(val app:Application) {
             val id: Int = (doc.get("id") as Long).toInt()
             val location: String = doc.getString("location")!!
             val name: String = doc.getString("name")!!
-            //val quantity: Int = (doc.get("quantity") as String).toInt()
+            val quantity: Int = (doc.get("quantity") as String).toInt()
             //add item to the mutable list
             allGrocery .add(GroceryItem(id, location,name, 1))
         }

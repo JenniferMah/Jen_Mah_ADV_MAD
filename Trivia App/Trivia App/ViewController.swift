@@ -128,5 +128,13 @@ class ViewController: UIViewController, UITableViewDelegate,  UITableViewDataSou
 
     }
 
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            print("DELETE")
+       }else{
+            print("meep")
+        }
+
+    }
 }
 

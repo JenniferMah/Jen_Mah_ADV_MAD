@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Lab Eight</string>
+    <string name="location">Aisle/Section</string>
+    <string name="groceryItem">Grocery Item</string>
+    <string name="submit">Add to List</string>
+    <string name="number">Quantity</string>
+</resources>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "699951505090",
+    "firebase_url": "https://lab-8-ade61.firebaseio.com",
+    "project_id": "lab-8-ade61",
+    "storage_bucket": "lab-8-ade61.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:699951505090:android:8a8ecf72d84c34cce9e55b",
+        "android_client_info": {
+          "package_name": "com.example.labeight"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "699951505090-0snl4bkgmn4hul5f38dqt2c0hh7n4m41.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBFxSA5KMD9-KFqAYV6AnYGAQ4W6W3MA0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "699951505090-0snl4bkgmn4hul5f38dqt2c0hh7n4m41.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

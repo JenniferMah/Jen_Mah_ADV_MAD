@@ -19,14 +19,14 @@ class GroceryViewModel(app: Application) : AndroidViewModel(app){
         Log.i("TEST","Hello")
         groceryRepo.groceryList.observeForever(groceryListObserver)
     }
-//    override fun onCleared() {
-//        groceryRepo.groceryList.removeObserver(groceryListObserver)
-//        super.onCleared()
-//    }
+    override fun onCleared() {
+        groceryRepo.groceryList.removeObserver(groceryListObserver)
+        super.onCleared()
+    }
 
-//    fun addGrocery(item: com.example.labseven.data.models.GroceryMember) {
-////        groceryRepo.additem(item)
-//    }
-//
+    fun addGrocery(item:GroceryItem) {
+//        groceryRepo.additem(item)
+    }
+
 //    fun removeGrocery(id: Int) = groceryRepo.removeitem(id)
 }

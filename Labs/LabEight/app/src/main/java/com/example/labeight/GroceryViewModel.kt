@@ -16,7 +16,6 @@ class GroceryViewModel(app: Application) : AndroidViewModel(app){
         groceryList.value = groceryRepo.allGrocery
     }
     init{
-        Log.i("TEST","Hello")
         groceryRepo.groceryList.observeForever(groceryListObserver)
     }
     override fun onCleared() {
@@ -25,8 +24,8 @@ class GroceryViewModel(app: Application) : AndroidViewModel(app){
     }
 
     fun addGrocery(item:GroceryItem) {
-//        groceryRepo.additem(item)
+        groceryRepo.addGrocery(item)
     }
 
-//    fun removeGrocery(id: Int) = groceryRepo.removeitem(id)
+    fun removeGrocery(id: Int) = groceryRepo.removeGrocery(id)
 }

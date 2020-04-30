@@ -2,6 +2,7 @@ package com.example.labeight
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.lifecycle.Observer
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity(), RecyclerAdaptor.GroceryListener {
 
         groceryVM.groceryList.observe(this, Observer {
             adapter.groceryList = it
+            Log.i("TEST","MEEP")
             adapter.notifyDataSetChanged()
         })
 
@@ -46,13 +48,14 @@ class MainActivity : AppCompatActivity(), RecyclerAdaptor.GroceryListener {
         val foodName = itemNameInput.text.toString()
         val number = numberInput.text.toString()
         val location = locationInput.text.toString()
+        val id = adapter.groceryList.size //I NEED TO GET THE COUNT OF THE LIST
         if (foodName != null && foodName != "" && number != null && number != "" && location != null && location != ""){
-            //groceryVM.addGrocery(GroceryMember(0,foodName,Integer.parseInt(number),location,calDate))
+            groceryVM.addGrocery(GroceryItem(id,location,foodName,Integer.parseInt(number)))
 
         }
     }
 
     override fun onMemberClicked(member_id: Int) {
-        //groceryVM.removeGrocery(member_id)
+        groceryVM.removeGrocery(member_id)
     }
 }

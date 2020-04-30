@@ -32,14 +32,14 @@ class GroceryRepository(val app:Application) {
     private  fun parseAllData(result:QuerySnapshot){
         for (doc in result){
             //get all of the data and cast to correct types
-            val id: Int = (doc.get("id") as Long).toInt()
+            val id: Int = doc.id.toInt()
             val location: String = doc.getString("location")!!
             val name: String = doc.getString("name")!!
             //THIS IS NOT WORKING
             //val quantity: Int = (doc.get("quantity") as String).toInt()
 
             //add item to the mutable list
-            allGrocery .add(GroceryItem(id, location,name, 1))
+            allGrocery.add(GroceryItem(id, location,name, 1))
         }
         Log.i("TEST", "All data: $allGrocery")
         groceryList.value = allGrocery
@@ -52,54 +52,24 @@ class GroceryRepository(val app:Application) {
     fun addGrocery(grocery: GroceryItem) {
         val recipeMap = recipeDetailsToHashMap(grocery)
 
-        db.collection("favorites").document(grocery.id.toString())
+        db.collection("GroceryList").document(grocery.id.toString())
             .set(recipeMap)
             .addOnSuccessListener {
-                Log.i("TEST", "Added favorite success!")
+                Log.i("TEST", "Added groceries success!")
             }
             .addOnFailureListener { exception ->
                 Log.w("TEST", "Error adding document.", exception)
             }
     }
-    private fun recipeDetailsToHashMap(recipe: RecipeDetails): HashMap<String, *> {
+
+    private fun recipeDetailsToHashMap(grocery:GroceryItem ): HashMap<String, *> {
         val map = hashMapOf(
-            "id" to recipe.id,
-            "title" to recipe.title,
-            "summary" to recipe.summary,
-            "image" to recipe.image,
-            "readyInMinutes" to recipe.readyInMinutes.toString(),
-            "servings" to recipe.servings.toString(),
-            "ingredients" to ingredientsToArrayOfMaps(recipe.extendedIngredients),
-            "instructions" to instructionsToArrayOfMaps(recipe.analyzedInstructions[0].steps)
+            "id" to grocery.id,
+            "location" to grocery.location,
+            "name" to grocery.name,
+            "quantity" to grocery.quantity
         )
         return map
     }
-//
-//    private fun ingredientsToArrayOfMaps(ingredients: Set<Ingredient>): ArrayList<HashMap<String, *>> {
-//        val ingredientArrayList = ArrayList<HashMap<String, *>>()
-//
-//        for(ingredient in ingredients) {
-//            ingredientArrayList.add(hashMapOf(
-//                "originalString" to ingredient.originalString,
-//                "name" to ingredient.name,
-//                "amount" to ingredient.amount.toString(),
-//                "unit" to ingredient.unit
-//            ))
-//        }
-//        return ingredientArrayList
-//    }
-//
-//    private fun instructionsToArrayOfMaps(instructions: List<Instruction>): ArrayList<HashMap<String, *>> {
-//        val instructionArrayList = ArrayList<HashMap<String, *>>()
-//
-//        for(instruction in instructions) {
-//            instructionArrayList.add(hashMapOf(
-//                "number" to instruction.number.toString(),
-//                "step" to instruction.step
-//            ))
-//        }
-//
-//        return instructionArrayList
-//    }
 
 }

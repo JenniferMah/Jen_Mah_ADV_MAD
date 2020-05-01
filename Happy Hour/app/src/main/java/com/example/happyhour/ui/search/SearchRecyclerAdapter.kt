@@ -1,4 +1,4 @@
-package com.example.happyhour.ui
+package com.example.happyhour.ui.search
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.happyhour.R
-import com.example.happyhour.data.DrinksDetails
+import com.example.happyhour.data.cocktail.DrinksDetails
 
 class SearchRecyclerAdapter(val context: Context, val drinkList: List<DrinksDetails>, val itemListener: DrinkItemListener) : RecyclerView.Adapter<SearchRecyclerAdapter.ViewHolder>() {
 

@@ -1,4 +1,4 @@
-package com.example.happyhour.ui
+package com.example.happyhour.ui.search
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.happyhour.R
+import com.example.happyhour.ui.SharedSearchViewModel
 
 class SearchFragment : Fragment(){
 
@@ -19,6 +20,7 @@ class SearchFragment : Fragment(){
 
     private lateinit var searchEditText: EditText
     private lateinit var searchButton: Button
+    var searchTerm = String()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,7 +28,6 @@ class SearchFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         searchViewModel = ViewModelProvider(requireActivity()).get(SharedSearchViewModel::class.java)
-
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
 
         val root = inflater.inflate(R.layout.fragment_search, container, false)
@@ -42,10 +43,10 @@ class SearchFragment : Fragment(){
     }
 
     private fun searchDrinks(){
-        val searchTerm = searchEditText.text.toString()
+        searchTerm = searchEditText.text.toString()
         if(searchTerm != null && searchTerm != "") {
             searchViewModel.userInputSearch.value = searchTerm
-            navController.navigate(R.id.action_searchFragment_to_searchResultsFragment2)
+            navController.navigate(R.id.action_searchFragment_to_searchResultsFragment2) //THIS NEEDS TO CHANGE TO THE CONNECTION TO NEW FRAGMENT
         }
     }
 

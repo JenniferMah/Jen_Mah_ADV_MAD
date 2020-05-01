@@ -1,18 +1,13 @@
-package com.example.happyhour.data
+package com.example.happyhour.data.cocktail
 
 import android.app.Application
 import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.example.happyhour.BASE_URL
+import com.example.happyhour.DRINKS_BASE_URL
 import com.example.happyhour.LOG_TAG
-import com.example.happyhour.utils.FileHelper
 import com.example.happyhour.utils.NetworkHelper
-import com.squareup.moshi.JsonAdapter
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.Types
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,7 +19,7 @@ class DrinksRepository(val app: Application) {
     val drinkData = MutableLiveData<List<DrinksDetails>>()
 
     private var retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
+        .baseUrl(DRINKS_BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
 

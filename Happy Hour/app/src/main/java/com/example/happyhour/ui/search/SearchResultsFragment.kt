@@ -1,17 +1,19 @@
-package com.example.happyhour.ui
+package com.example.happyhour.ui.search
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.happyhour.R
-import com.example.happyhour.data.DrinksDetails
+import com.example.happyhour.data.cocktail.DrinksDetails
+import com.example.happyhour.ui.SharedSearchViewModel
 
 /**
  * A simple [Fragment] subclass.
@@ -22,13 +24,14 @@ class SearchResultsFragment : Fragment(),
     private lateinit var recyclerView: RecyclerView
     private lateinit var navController: NavController
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         searchViewModel = ViewModelProvider(requireActivity()).get(SharedSearchViewModel::class.java)
-
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
+
 
         val root = inflater.inflate(R.layout.fragment_search_results, container, false)
         recyclerView = root.findViewById(R.id.recyclerView)

@@ -1,4 +1,4 @@
-package com.example.happyhour.data
+package com.example.happyhour.data.cocktail
 
 import retrofit2.Call
 import retrofit2.http.GET
@@ -8,6 +8,4 @@ interface cocktailDBService{
    // https://www.thecocktaildb.com/    api/json/v1/1/search.php?    s=margarita
     @GET("api/json/v1/1/search.php?")
     fun searchCocktails(@Query("s")searchTerm: String): Call<SearchResponse>
-
-
 }

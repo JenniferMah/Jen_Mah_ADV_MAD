@@ -7,25 +7,43 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.happyhour.ui.SearchFragment"
-        android:label="fragment_search"
-        tools:layout="@layout/fragment_search" >
+        android:name="com.example.happyhour.ui.search.SearchFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_searchResultsFragment2"
             app:destination="@id/searchResultsFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.happyhour.ui.DetailFragment"
+        android:name="com.example.happyhour.ui.search.details.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/action_detailFragment_to_makeFragment"
+            app:destination="@id/makeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchResultsFragment"
-        android:name="com.example.happyhour.ui.SearchResultsFragment"
+        android:name="com.example.happyhour.ui.search.SearchResultsFragment"
         android:label="fragment_search_results"
         tools:layout="@layout/fragment_search_results" >
         <action
             android:id="@+id/action_searchResultsFragment_to_detailFragment2"
             app:destination="@id/detailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/makeFragment"
+        android:name="com.example.happyhour.ui.search.details.makeFragment"
+        android:label="fragment_make"
+        tools:layout="@layout/fragment_make" >
+        <action
+            android:id="@+id/action_makeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favesFragment"
+        android:name="com.example.happyhour.ui.favorites.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
 </navigation>

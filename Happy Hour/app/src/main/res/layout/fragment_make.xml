@@ -14,16 +14,15 @@
         android:src="@drawable/barman"
         app:layout_constraintBottom_toTopOf="@+id/makeTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.659" />
 
     <TextView
         android:id="@+id/makeTextView"
-        android:layout_width="375dp"
-        android:layout_height="133dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="184dp"
+        android:layout_width="409dp"
+        android:layout_height="170dp"
+        android:layout_marginBottom="128dp"
         android:text="@string/intro"
         android:textAlignment="center"
         android:textSize="24sp"

@@ -2,14 +2,13 @@ package com.example.happyhour.ui.search.details
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -37,6 +36,9 @@ class DetailFragment : Fragment() {
         val drinkTitleTextView = root.findViewById<TextView>(R.id.TitleTextView)
         val ingredientListView = root.findViewById<RecyclerView>(R.id.ingredientsListView)
         val makeButton = root.findViewById<Button>(R.id.MakeDrinkButton)
+
+        //ALLOW OPTIONS MENU
+        setHasOptionsMenu(true)
 
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
 
@@ -74,6 +76,12 @@ class DetailFragment : Fragment() {
 
         return root
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.detail_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
 
     private fun checkNull(measure:String?, item:String?) {
         if(measure != null && item != null){

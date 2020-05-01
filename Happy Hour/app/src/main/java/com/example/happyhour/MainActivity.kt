@@ -10,16 +10,29 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity(), FragmentManager.OnBackStackChangedListener {
+class MainActivity : AppCompatActivity(){
     private lateinit var navController: NavController
+    private lateinit var navView: BottomNavigationView
+
+    private val navControllerListener = NavController.OnDestinationChangedListener { controller, destination, arguments ->
+        if(destination.id == R.id.favesFragment || destination.id == R.id.searchFragment) {
+            //show bottom nav and hide up arrow
+            supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            navView.visibility = android.view.View.VISIBLE
+        } else {
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            navView.visibility = android.view.View.GONE
+        }
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val navView: BottomNavigationView = findViewById(R.id.navigation_view)
+        navView = findViewById(R.id.navigation_view)
 
         navController = findNavController(R.id.nav_host_fragment)
+        navController.addOnDestinationChangedListener(navControllerListener)
         val appBarConfiguration = AppBarConfiguration(setOf(
             R.id.searchFragment, R.id.favesFragment))
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -30,12 +43,12 @@ class MainActivity : AppCompatActivity(), FragmentManager.OnBackStackChangedList
         navController.navigateUp();
         return true;
     }
-
-    override fun onBackStackChanged() {
-        shouldDisplayHomeUp()
-    }
-    private fun shouldDisplayHomeUp() {
-        val canGoBack = supportFragmentManager.backStackEntryCount > 1
-        supportActionBar?.setDisplayHomeAsUpEnabled(canGoBack)
-    }
+//
+//    override fun onBackStackChanged() {
+//        shouldDisplayHomeUp()
+//    }
+//    private fun shouldDisplayHomeUp() {
+//        val canGoBack = supportFragmentManager.backStackEntryCount > 1
+//        supportActionBar?.setDisplayHomeAsUpEnabled(canGoBack)
+//    }
 }

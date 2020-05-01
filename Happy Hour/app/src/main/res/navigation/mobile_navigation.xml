@@ -45,5 +45,9 @@
         android:id="@+id/favesFragment"
         android:name="com.example.happyhour.ui.favorites.FavoritesFragment"
         android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites">
+        <action
+            android:id="@+id/action_favesFragment_to_makeFragment"
+            app:destination="@id/makeFragment" />
+    </fragment>
 </navigation>

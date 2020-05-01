@@ -56,4 +56,11 @@ class FavesRepo(val app: Application) {
 
     }
 
+    fun isDrinkFavorited(id: Int) {
+        //See if it's favorites?
+    }
+    fun removeDrinkFromFavorites(id: Int) {
+        db.collection("favoriteDrinks").document(id.toString()).delete()
+    }
+
 }

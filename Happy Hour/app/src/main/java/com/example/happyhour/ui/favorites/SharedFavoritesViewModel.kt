@@ -1,19 +1,36 @@
 package com.example.happyhour.ui.favorites
 
+import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
+import com.example.happyhour.data.FavesRepo
+import com.example.happyhour.data.cocktail.DrinksDetails
 
-class SharedFavoritesViewModel:ViewModel() {
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is the Favorites Fragment"
+class SharedFavoritesViewModel(app: Application) : AndroidViewModel(app)  {
+    private val favesRepo = FavesRepo(app)
+
+    val favDrinksList: MutableLiveData<List<DrinksDetails>> = favesRepo.favoriteList
+
+    var numberOfCurrentDrinks = 0
+
+    //get selected favorites details and update live data
+    fun favSelected(id:Int) {
+        favesRepo.removeDrinkFromFavorites(id)
     }
-    val text: LiveData<String> = _text
+
+    //pass new favorite to repo class for transform and insertion
+    fun addFavoriteDrink(recipe: DrinksDetails) {
+       //add drink from the star
+    }
+
+    val isFavorite = favesRepo.drinkIsFavorite
+
+    fun isDrinkFavorited(id: Int) {
+        favesRepo.isDrinkFavorited(id)
+    }
 
 }

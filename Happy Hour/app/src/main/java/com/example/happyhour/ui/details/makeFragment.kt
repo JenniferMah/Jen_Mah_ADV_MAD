@@ -1,4 +1,4 @@
-package com.example.happyhour.ui.search.details
+package com.example.happyhour.ui.details
 
 import android.os.Bundle
 import android.util.Log
@@ -11,10 +11,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.bumptech.glide.Glide
 import com.example.happyhour.R
 import com.example.happyhour.ui.SharedSearchViewModel
 
@@ -31,13 +29,10 @@ class makeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.i("TEST","TEST")
         sharedSearchViewModel = ViewModelProvider(requireActivity()).get(SharedSearchViewModel::class.java)
         sharedSearchViewModel.selectedDrink.observe(viewLifecycleOwner, Observer {
             drinkInstructions = it.strInstructions
-            (activity as AppCompatActivity?)?.supportActionBar?.title = it.strDrink
-
-
+            (activity as AppCompatActivity?)?.supportActionBar?.title = it.strDrink //These might have to change for favorites funcationalit
         })
 
         val root = inflater.inflate(R.layout.fragment_make, container, false)

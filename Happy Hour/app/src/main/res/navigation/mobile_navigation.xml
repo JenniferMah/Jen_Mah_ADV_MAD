@@ -16,8 +16,8 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.happyhour.ui.search.details.DetailFragment"
-        android:label="fragment_detail"
+        android:name="com.example.happyhour.ui.details.DetailFragment"
+        android:label=""
         tools:layout="@layout/fragment_detail" >
         <action
             android:id="@+id/action_detailFragment_to_makeFragment"
@@ -26,7 +26,7 @@
     <fragment
         android:id="@+id/searchResultsFragment"
         android:name="com.example.happyhour.ui.search.SearchResultsFragment"
-        android:label="fragment_search_results"
+        android:label="Search Results"
         tools:layout="@layout/fragment_search_results" >
         <action
             android:id="@+id/action_searchResultsFragment_to_detailFragment2"
@@ -34,8 +34,8 @@
     </fragment>
     <fragment
         android:id="@+id/makeFragment"
-        android:name="com.example.happyhour.ui.search.details.makeFragment"
-        android:label="fragment_make"
+        android:name="com.example.happyhour.ui.details.makeFragment"
+        android:label=""
         tools:layout="@layout/fragment_make" >
         <action
             android:id="@+id/action_makeFragment_to_searchFragment"
@@ -44,7 +44,7 @@
     <fragment
         android:id="@+id/favesFragment"
         android:name="com.example.happyhour.ui.favorites.FavoritesFragment"
-        android:label="fragment_favorites"
+        android:label="Favorite Drinks"
         tools:layout="@layout/fragment_favorites">
         <action
             android:id="@+id/action_favesFragment_to_makeFragment"

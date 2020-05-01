@@ -1,14 +1,12 @@
-package com.example.happyhour.ui.search.details
+package com.example.happyhour.ui.details
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -57,10 +55,8 @@ class DetailFragment : Fragment() {
             checkNull(it.strMeasure4,it.strIngredient4)
             checkNull(it.strMeasure5,it.strIngredient5)
             checkNull(it.strMeasure6,it.strIngredient6)
-            checkNull(it.strMeasure7,it.strIngredient7)
-            checkNull(it.strMeasure8,it.strIngredient8)
-            checkNull(it.strMeasure9,it.strIngredient9)
-            checkNull(it.strMeasure10,it.strIngredient10)
+
+
 
             val adapter = DetailRecyclerAdapter(requireContext(), drinkIngredientList)
             ingredientListView.adapter = adapter
@@ -91,7 +87,6 @@ class DetailFragment : Fragment() {
         }
     }
     private fun makeDrink(){
-        Log.i("TEST","REACH")
         navController.navigate(R.id.action_detailFragment_to_makeFragment)
 
     }

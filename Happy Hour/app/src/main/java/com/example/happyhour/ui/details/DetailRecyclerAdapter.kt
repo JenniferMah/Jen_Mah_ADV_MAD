@@ -1,4 +1,4 @@
-package com.example.happyhour.ui.search.details
+package com.example.happyhour.ui.details
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.happyhour.R
-import kotlinx.android.synthetic.main.ingredient_list.view.*
 
 class DetailRecyclerAdapter(val context: Context, val drinkIngredientList: List<String>): RecyclerView.Adapter<DetailRecyclerAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -25,6 +24,15 @@ class DetailRecyclerAdapter(val context: Context, val drinkIngredientList: List<
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentIngrdient = drinkIngredientList[position]
         holder.ingredientTextView.text = currentIngrdient
+        //pass the data item to the fragment click listener
+//        holder.itemView.setOnClickListener {
+//            itemListener.onRecipeItemClick(curRecipe)
+//        }
+//
+//        holder.itemView.setOnLongClickListener( View.OnLongClickListener{
+//            itemListener.onRecipeLongClick(curRecipe)
+//            return@OnLongClickListener true
+//        })
     }
 
 }

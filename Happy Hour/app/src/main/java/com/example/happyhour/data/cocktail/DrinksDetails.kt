@@ -9,23 +9,22 @@ data class SearchResponse(
 
 @JsonClass(generateAdapter = true)
 data class DrinksDetails (
-    val idDrink: String, //this is shown as a string
-    val strDrink: String,
-    val strInstructions: String,
-    val strIngredient1: String?,
-    val strIngredient2: String?,
-    val strIngredient3: String?,
-    val strIngredient4: String?,
-    val strIngredient5: String?,
-    val strIngredient6: String?,
+    var idDrink: String? = null, //this is shown as a string
+    val strDrink: String? = null,
+    val strInstructions: String? = null,
+    val strIngredient1: String? = null,
+    val strIngredient2: String? = null,
+    val strIngredient3: String? = null,
+    val strIngredient4: String? = null,
+    val strIngredient5: String? = null,
+    val strIngredient6: String? = null,
 
-    val strMeasure1: String?,
-    val strMeasure2: String?,
-    val strMeasure3: String?,
-    val strMeasure4: String?,
-    val strMeasure5: String?,
-    val strMeasure6: String?,
+    val strMeasure1: String? = null,
+    val strMeasure2: String? = null,
+    val strMeasure3: String? = null,
+    val strMeasure4: String? = null,
+    val strMeasure5: String? = null,
+    val strMeasure6: String? = null,
 
-
-    val strDrinkThumb: String?
+    val strDrinkThumb: String? = null
 )

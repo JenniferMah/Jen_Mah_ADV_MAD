@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.happyhour.data.cocktail.DrinksDetails
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
 class FavesRepo(val app: Application) {
@@ -22,45 +23,44 @@ class FavesRepo(val app: Application) {
             }
             if (snapshot != null) {
                 parseAllData(snapshot)
+                //send an object to firebase and get it back instead.
+
             } else {
                 Log.d("TEST", "Current data: null")
             }
             }
         }
 
-
     private fun parseAllData(result: QuerySnapshot) {
         val allFavoriteDrinks = mutableListOf<DrinksDetails>()
         for(doc in result) {
-            //get the data from the document
-            val id: String = doc.id.toString() //might need to be idDrink HELP
-            val name: String = doc.getString("strDrink")!!
-            val imgae: String = doc.getString("strDrinkThumb")!!
-            val strIngredient1: String = doc.getString("strIngredient1")!!
-            val strIngredient2: String = doc.getString("strIngredient2")!!
-            val strIngredient3: String = doc.getString("strIngredient3")!!
-            val strIngredient4: String = doc.getString("strIngredient4")!!
-            val strIngredient5: String = doc.getString("strIngredient5")!!
-            val strIngredient6: String = doc.getString("strIngredient6")!!
-
-            val strMeasure1: String = doc.getString("strMeasure1")!!
-            val strMeasure2: String = doc.getString("strMeasure2")!!
-            val strMeasure3: String = doc.getString("strMeasure3")!!
-            val strMeasure4: String = doc.getString("strMeasure4")!!
-            val strMeasure5: String = doc.getString("strMeasure5")!!
-            val strMeasure6: String = doc.getString("strMeasure6")!!
-        }
-
+            val currentDrink = doc.toObject<DrinksDetails>()
+            currentDrink.idDrink = doc.id
+            allFavoriteDrinks.add(currentDrink) //this should be a drinks details object
+       }
+//
         Log.i("TEST", "allData: $allFavoriteDrinks")
         favoriteList.value =  allFavoriteDrinks
-
+//
+   }
+    fun addDrinkFirebase(drink:DrinksDetails){
+        db.collection("favoriteDrinks").document(drink.idDrink!!).set(drink)
     }
 
-    fun isDrinkFavorited(id: Int) {
-        //See if it's favorites?
+    fun isDrinkFavorited(id: String): Boolean {
+        if (favoriteList.value != null){
+            for(i in favoriteList.value!!){
+                if (id == i.idDrink) {
+                    return true
+                }
+            }
+            return false
+        }
+        return false
+
     }
-    fun removeDrinkFromFavorites(id: Int) {
-        db.collection("favoriteDrinks").document(id.toString()).delete()
+    fun removeDrinkFromFavorites(id: String) {
+        db.collection("favoriteDrinks").document(id).delete()
     }
 
 }

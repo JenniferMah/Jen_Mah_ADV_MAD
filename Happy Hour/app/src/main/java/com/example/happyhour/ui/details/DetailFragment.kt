@@ -21,14 +21,14 @@ import com.example.happyhour.ui.SharedSearchViewModel
  */
 class DetailFragment : Fragment() {
     private lateinit var sharedSearchViewModel: SharedSearchViewModel
-    val drinkIngredientList = mutableListOf<String>()
+    var drinkIngredientList = mutableListOf<String>()
     private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        sharedSearchViewModel = ViewModelProvider(requireActivity()).get(SharedSearchViewModel::class.java)
         //references to views
         val root = inflater.inflate(R.layout.fragment_detail, container, false)
         val drinkTitleTextView = root.findViewById<TextView>(R.id.TitleTextView)
@@ -41,22 +41,19 @@ class DetailFragment : Fragment() {
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
 
         val imageView = root.findViewById<ImageView>(R.id.drinkImageView)
-
-        sharedSearchViewModel = ViewModelProvider(requireActivity()).get(SharedSearchViewModel::class.java)
-
         //OBSERVER
         sharedSearchViewModel.selectedDrink.observe(viewLifecycleOwner, Observer {
             (activity as AppCompatActivity?)?.supportActionBar?.title = it.strDrink
             drinkTitleTextView.text = it.strDrink
+            drinkIngredientList.clear()
             //check if null and add to recycler view
+
             checkNull(it.strMeasure1,it.strIngredient1)
             checkNull(it.strMeasure2,it.strIngredient2)
             checkNull(it.strMeasure3,it.strIngredient3)
             checkNull(it.strMeasure4,it.strIngredient4)
             checkNull(it.strMeasure5,it.strIngredient5)
             checkNull(it.strMeasure6,it.strIngredient6)
-
-
 
             val adapter = DetailRecyclerAdapter(requireContext(), drinkIngredientList)
             ingredientListView.adapter = adapter
@@ -77,6 +74,14 @@ class DetailFragment : Fragment() {
         inflater.inflate(R.menu.detail_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.favoriteDrink){
+            sharedSearchViewModel.addFaves()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 
 
     private fun checkNull(measure:String?, item:String?) {

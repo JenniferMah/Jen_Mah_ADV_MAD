@@ -30,8 +30,10 @@ class makeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         sharedSearchViewModel = ViewModelProvider(requireActivity()).get(SharedSearchViewModel::class.java)
+
         sharedSearchViewModel.selectedDrink.observe(viewLifecycleOwner, Observer {
-            drinkInstructions = it.strInstructions
+            //ADD NULL CHECK or elvis op
+            drinkInstructions = it.strInstructions!!
             (activity as AppCompatActivity?)?.supportActionBar?.title = it.strDrink //These might have to change for favorites funcationalit
         })
 
@@ -42,6 +44,12 @@ class makeFragment : Fragment() {
         val makeTextView = root.findViewById<TextView>(R.id.makeTextView)
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
 
+        sharedSearchViewModel.joke.observe(viewLifecycleOwner, Observer {
+            if(it != sharedSearchViewModel.currentJoke){
+                sharedSearchViewModel.currentJoke = it
+                makeTextView.text = it.joke
+            }
+        })
 
         makeDrinkButton.setOnClickListener {
             if (makeDrinkButton.text == "Make My Drink"){
@@ -53,8 +61,10 @@ class makeFragment : Fragment() {
         }
 
         tellMeAJokeButton.setOnClickListener{
-            //HELP: MAKE API CALL TO GET JOKE Not sure if I should add an observer?
-            Log.i("TEST", "TELL EM A JOKE")
+            //trigger jokes API call
+            sharedSearchViewModel.getjoke()
+
+
         }
 
         return root

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -17,7 +18,6 @@ import com.example.happyhour.ui.details.DetailRecyclerAdapter
 
 
 class FavoritesFragment : Fragment(){
-    private lateinit var favesViewModel:SharedFavoritesViewModel
     private lateinit var favRecyclerView: RecyclerView
     private lateinit var navController: NavController
     private lateinit var sharedSearchViewModel: SharedFavoritesViewModel
@@ -29,13 +29,24 @@ class FavoritesFragment : Fragment(){
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        favesViewModel = ViewModelProvider(this).get(SharedFavoritesViewModel::class.java)
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_favorites, container, false)
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
         sharedSearchViewModel = ViewModelProvider(requireActivity()).get(SharedFavoritesViewModel::class.java)
+        val rec = root.findViewById<RecyclerView>(R.id.favoritesRecyclerView)
+        var adapter = DetailRecyclerAdapter(requireContext(), listOf())
+        rec.adapter = adapter
 
+        sharedSearchViewModel.favDrinksList.observe(viewLifecycleOwner, Observer {
+            //reuse details recycler
+            val favesDrinks = mutableListOf<String>()
+            for( i in it){
+                favesDrinks.add(i.strDrink?: "")
+            }
 
+            adapter.drinkIngredientList = favesDrinks
+            adapter.notifyDataSetChanged()
+        })
 
 
         return root

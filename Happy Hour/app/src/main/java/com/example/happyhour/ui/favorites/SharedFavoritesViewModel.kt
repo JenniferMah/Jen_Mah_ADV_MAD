@@ -18,7 +18,7 @@ class SharedFavoritesViewModel(app: Application) : AndroidViewModel(app)  {
     var numberOfCurrentDrinks = 0
 
     //get selected favorites details and update live data
-    fun favSelected(id:Int) {
+    fun favSelected(id:String) {
         favesRepo.removeDrinkFromFavorites(id)
     }
 
@@ -29,7 +29,7 @@ class SharedFavoritesViewModel(app: Application) : AndroidViewModel(app)  {
 
     val isFavorite = favesRepo.drinkIsFavorite
 
-    fun isDrinkFavorited(id: Int) {
+    fun isDrinkFavorited(id: String) {
         favesRepo.isDrinkFavorited(id)
     }
 

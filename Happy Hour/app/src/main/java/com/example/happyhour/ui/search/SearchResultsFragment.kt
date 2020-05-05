@@ -43,6 +43,8 @@ class SearchResultsFragment : Fragment(),
                 this
             )
             recyclerView.adapter = adapter
+
+
         })
         // Inflate the layout for this fragment
         return root

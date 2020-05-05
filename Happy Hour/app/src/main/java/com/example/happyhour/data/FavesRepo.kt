@@ -13,7 +13,6 @@ class FavesRepo(val app: Application) {
     private val db = Firebase.firestore
 
     val favoriteList = MutableLiveData<List<DrinksDetails>>() //list of favorite drinks and the details?
-    val drinkIsFavorite = MutableLiveData<Boolean>() //This will determine if it is faves drink or not
 
     init{
         db.collection("favoriteDrinks").addSnapshotListener { snapshot, e ->
@@ -38,10 +37,8 @@ class FavesRepo(val app: Application) {
             currentDrink.idDrink = doc.id
             allFavoriteDrinks.add(currentDrink) //this should be a drinks details object
        }
-//
-        Log.i("TEST", "allData: $allFavoriteDrinks")
         favoriteList.value =  allFavoriteDrinks
-//
+
    }
     fun addDrinkFirebase(drink:DrinksDetails){
         db.collection("favoriteDrinks").document(drink.idDrink!!).set(drink)

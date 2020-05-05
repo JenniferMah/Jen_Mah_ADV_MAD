@@ -1,10 +1,13 @@
 package com.example.happyhour.ui.favorites
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -15,12 +18,13 @@ import com.example.happyhour.data.cocktail.DrinksDetails
 import com.example.happyhour.ui.SharedSearchViewModel
 import com.example.happyhour.ui.details.DetailFragment
 import com.example.happyhour.ui.details.DetailRecyclerAdapter
+import com.example.happyhour.ui.search.SearchRecyclerAdapter
 
 
-class FavoritesFragment : Fragment(){
-    private lateinit var favRecyclerView: RecyclerView
+class FavoritesFragment : Fragment(),
+    SearchRecyclerAdapter.DrinkItemListener {
     private lateinit var navController: NavController
-    private lateinit var sharedSearchViewModel: SharedFavoritesViewModel
+    private lateinit var sharedSearchViewModel: SharedSearchViewModel
 
 
 
@@ -29,27 +33,49 @@ class FavoritesFragment : Fragment(){
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val root = inflater.inflate(R.layout.fragment_favorites, container, false)
+        sharedSearchViewModel = ViewModelProvider(requireActivity()).get(SharedSearchViewModel::class.java)
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
-        sharedSearchViewModel = ViewModelProvider(requireActivity()).get(SharedFavoritesViewModel::class.java)
+
+        val root = inflater.inflate(R.layout.fragment_favorites, container, false)
         val rec = root.findViewById<RecyclerView>(R.id.favoritesRecyclerView)
-        var adapter = DetailRecyclerAdapter(requireContext(), listOf())
+        var adapter = SearchRecyclerAdapter(requireContext(), emptyList<DrinksDetails>(),this)
         rec.adapter = adapter
 
         sharedSearchViewModel.favDrinksList.observe(viewLifecycleOwner, Observer {
             //reuse details recycler
-            val favesDrinks = mutableListOf<String>()
+            val favesDrinks = mutableListOf<DrinksDetails>()
             for( i in it){
-                favesDrinks.add(i.strDrink?: "")
+                favesDrinks.add(i)
             }
 
-            adapter.drinkIngredientList = favesDrinks
+            adapter.drinkList = favesDrinks
             adapter.notifyDataSetChanged()
         })
 
-
         return root
+    }
+
+
+
+    override fun onDrinkItemClick(drink: DrinksDetails) {
+        //add toast
+        val dialogBuilder = AlertDialog.Builder(requireContext())
+        dialogBuilder.setMessage("Do you want to remove this recipe from your favorites?")
+            .setCancelable(false)
+            // positive button text and action
+            .setPositiveButton("YES") { dialog, _ ->
+                sharedSearchViewModel.delete(drink.idDrink!!)
+                Toast.makeText(requireContext(),"Recipe removed from Favorites!", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+            }
+            // negative button text and action
+            .setNegativeButton("NO") {
+                    dialog, _ -> dialog.cancel()
+            }
+
+        val alert = dialogBuilder.create()
+        alert.setTitle("Remove Drink From Favorites List")
+        alert.show()
     }
 
 

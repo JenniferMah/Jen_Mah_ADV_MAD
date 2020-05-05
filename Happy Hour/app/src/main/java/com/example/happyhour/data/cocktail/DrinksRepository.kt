@@ -13,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.net.URLEncoder
 
 class DrinksRepository(val app: Application) {
    // private val listType = Types.newParameterizedType(List::class.java, DrinksDetails::class.java)
@@ -41,11 +42,11 @@ class DrinksRepository(val app: Application) {
         if(NetworkHelper.networkConnected(app)) {
             val response = service.searchCocktails(searchTerm).execute()
             if(response.body() != null) {
-                Log.i(LOG_TAG,"THIS MAKES IT INTO THE CALL")
+                Log.i("TEST","THIS MAKES IT INTO THE CALL")
                 val responseBody = response.body()
                 drinkData.postValue(responseBody?.drinks?.toList())
             } else {
-                Log.e(LOG_TAG, "Could not search drinks. Error code: ${response.code()}")
+                Log.i("TEST", "Could not search drinks. Error code: ${response.code()}")
             }
         }
     }

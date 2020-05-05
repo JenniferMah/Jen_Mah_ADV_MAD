@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.happyhour.R
 import com.example.happyhour.data.cocktail.DrinksDetails
 
-class SearchRecyclerAdapter(val context: Context, val drinkList: List<DrinksDetails>, val itemListener: DrinkItemListener) : RecyclerView.Adapter<SearchRecyclerAdapter.ViewHolder>() {
+class SearchRecyclerAdapter(val context: Context, var drinkList: List<DrinksDetails>, val itemListener: DrinkItemListener) : RecyclerView.Adapter<SearchRecyclerAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleText = itemView.findViewById<TextView>(R.id.titleTextView)

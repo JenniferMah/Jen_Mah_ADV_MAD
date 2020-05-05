@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
-        android:text="Please Enter Your Order: "
+        android:text="Please Enter Your Cocktail Order: "
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/searchInput"
         app:layout_constraintEnd_toEndOf="parent"

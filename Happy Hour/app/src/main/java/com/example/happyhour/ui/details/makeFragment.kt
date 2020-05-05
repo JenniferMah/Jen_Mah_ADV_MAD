@@ -1,14 +1,13 @@
 package com.example.happyhour.ui.details
 
 import android.os.Bundle
-import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -23,6 +22,7 @@ class makeFragment : Fragment() {
     private lateinit var navController: NavController
     private lateinit var sharedSearchViewModel: SharedSearchViewModel
     var drinkInstructions = String()
+    var drinkName = String()
 
 
     override fun onCreateView(
@@ -34,8 +34,11 @@ class makeFragment : Fragment() {
         sharedSearchViewModel.selectedDrink.observe(viewLifecycleOwner, Observer {
             //ADD NULL CHECK or elvis op
             drinkInstructions = it.strInstructions!!
-            (activity as AppCompatActivity?)?.supportActionBar?.title = it.strDrink //These might have to change for favorites funcationalit
+            drinkName = it.strDrink.toString()
+            (activity as AppCompatActivity?)?.supportActionBar?.title = drinkName//These might have to change for favorites funcationalit
         })
+
+        setHasOptionsMenu(true)
 
         val root = inflater.inflate(R.layout.fragment_make, container, false)
         //References to the different items
@@ -56,7 +59,7 @@ class makeFragment : Fragment() {
                 makeDrinkButton.text = "Finish Drink"
                 makeTextView.text = drinkInstructions
             }else{
-                Finished()
+                finished()
             }
         }
 
@@ -70,7 +73,34 @@ class makeFragment : Fragment() {
         return root
     }
 
-    private fun Finished(){
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.detail_menu, menu)
+        val item = menu.findItem(R.id.favoriteDrink)
+        checkFaves(item)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.favoriteDrink){
+            sharedSearchViewModel.addFaves()
+            item.icon = ResourcesCompat.getDrawable(resources,R.drawable.heart_icon_full,null)
+            Toast.makeText(requireContext(),"$drinkName added to list of favorite drinks!", Toast.LENGTH_LONG).show()
+        }
+        return super.onOptionsItemSelected(item)
+
+    }
+
+
+    private fun checkFaves(menuItem: MenuItem){
+        val isFaves = sharedSearchViewModel.isfaves()
+        if (isFaves){
+            menuItem.icon = ResourcesCompat.getDrawable(resources,R.drawable.heart_icon_full,null)
+        }else{
+            menuItem.icon = ResourcesCompat.getDrawable(resources,R.drawable.heart_icon,null)
+        }
+    }
+
+    private fun finished(){
         navController.navigate(R.id.action_makeFragment_to_searchFragment)
         (activity as AppCompatActivity?)?.supportActionBar?.title = "Happy Hour"
 

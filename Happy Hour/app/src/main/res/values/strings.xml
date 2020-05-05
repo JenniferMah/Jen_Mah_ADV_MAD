@@ -14,7 +14,7 @@
     <string name="makeDrink">Make My Drink</string>
     <string name="intro">My Name is Leo and I\'ll be your bartender. Do you want to hear a joke or continue on to make your drink?</string>
     <string name="title_search">Order</string>
-    <string name="title_favorites">Favorite Drinks</string>
+    <string name="title_favorites">Favorite Drinks List</string>
     <string name="save">Save</string>
 
 </resources>

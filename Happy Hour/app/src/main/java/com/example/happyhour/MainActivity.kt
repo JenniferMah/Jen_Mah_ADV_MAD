@@ -53,12 +53,5 @@ class MainActivity : AppCompatActivity(){
         navController.navigateUp();
         return true;
     }
-//
-//    override fun onBackStackChanged() {
-//        shouldDisplayHomeUp()
-//    }
-//    private fun shouldDisplayHomeUp() {
-//        val canGoBack = supportFragmentManager.backStackEntryCount > 1
-//        supportActionBar?.setDisplayHomeAsUpEnabled(canGoBack)
-//    }
+
 }

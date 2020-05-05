@@ -21,6 +21,8 @@ class SharedSearchViewModel(app: Application) : AndroidViewModel(app) {
     var currentJoke = JokesDetails("")
     val favesRepo = FavesRepo(app)
     val favDrinksList: MutableLiveData<List<DrinksDetails>> = favesRepo.favoriteList
+    var validSearch = true
+
     init {
         userInputSearch.observeForever(drinksRepo.searchTermEntered)
     }

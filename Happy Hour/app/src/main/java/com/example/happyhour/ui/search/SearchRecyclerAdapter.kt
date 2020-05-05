@@ -39,12 +39,10 @@ class SearchRecyclerAdapter(val context: Context, var drinkList: List<DrinksDeta
         if(position %2 == 1)
         {
             holder.itemView.setBackgroundColor(Color.parseColor("#f0fffe"));
-            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFFFF"));
         }
         else
         {
             holder.itemView.setBackgroundColor(Color.parseColor("#ffffff"));
-            //  holder.imageView.setBackgroundColor(Color.parseColor("#FFFAF8FD"));
         }
     }
 

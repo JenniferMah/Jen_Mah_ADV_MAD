@@ -41,10 +41,9 @@ class DrinksRepository(val app: Application) {
     private suspend fun getDrinksData(searchTerm: String) {
         if(NetworkHelper.networkConnected(app)) {
             val response = service.searchCocktails(searchTerm).execute()
-            if(response.body() != null) {
-                Log.i("TEST","THIS MAKES IT INTO THE CALL")
+            if(response.body() != null ) {
                 val responseBody = response.body()
-                drinkData.postValue(responseBody?.drinks?.toList())
+                drinkData.postValue(responseBody?.drinks?.toList() as List<DrinksDetails>?)
             } else {
                 Log.i("TEST", "Could not search drinks. Error code: ${response.code()}")
             }

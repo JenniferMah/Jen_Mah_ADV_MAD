@@ -1,6 +1,7 @@
 package com.example.happyhour.ui.search
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +45,9 @@ class SearchFragment : Fragment(){
 
     private fun searchDrinks(){
         searchTerm = searchEditText.text.toString()
-        if(searchTerm != null && searchTerm != "") {
+
+        if(searchTerm != null && searchTerm != "" ) {
+            Log.i("TEST","THIS IS WHAT SEARCH TERM IS AT BUTTON"+searchViewModel.validSearch.toString())
             searchViewModel.userInputSearch.value = searchTerm
             navController.navigate(R.id.action_searchFragment_to_searchResultsFragment2) //THIS NEEDS TO CHANGE TO THE CONNECTION TO NEW FRAGMENT
         }

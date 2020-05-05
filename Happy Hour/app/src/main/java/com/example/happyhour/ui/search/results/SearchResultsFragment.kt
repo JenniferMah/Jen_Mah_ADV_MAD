@@ -1,11 +1,14 @@
-package com.example.happyhour.ui.search
+package com.example.happyhour.ui.search.results
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.ProgressBar
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -14,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.happyhour.R
 import com.example.happyhour.data.cocktail.DrinksDetails
 import com.example.happyhour.ui.SharedSearchViewModel
+import com.example.happyhour.ui.search.SearchRecyclerAdapter
 
 /**
  * A simple [Fragment] subclass.
@@ -23,17 +27,34 @@ class SearchResultsFragment : Fragment(),
     private lateinit var searchViewModel: SharedSearchViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var navController: NavController
+    private lateinit var constraintLayout: ConstraintLayout
+    private lateinit var loadingBar: ProgressBar
 
 
+
+    @SuppressLint("ResourceType")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         searchViewModel = ViewModelProvider(requireActivity()).get(SharedSearchViewModel::class.java)
         navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
-
-
         val root = inflater.inflate(R.layout.fragment_search_results, container, false)
+
+        constraintLayout = root.findViewById(R.id.resultConstraintLayout)
+
+//loading bar with constraints
+        loadingBar = ProgressBar(requireContext())
+        loadingBar.id = 1
+        constraintLayout.addView(loadingBar)
+
+        var constraints = ConstraintSet()
+        constraints.clone(constraintLayout)
+        constraints.connect(loadingBar.id, ConstraintSet.RIGHT, constraintLayout.id, ConstraintSet.RIGHT, 10)
+        constraints.connect(loadingBar.id, ConstraintSet.LEFT, constraintLayout.id, ConstraintSet.LEFT, 10)
+        constraints.connect(loadingBar.id, ConstraintSet.TOP, constraintLayout.id, ConstraintSet.TOP, 30)
+
+        constraints.applyTo(constraintLayout)
         recyclerView = root.findViewById(R.id.recyclerView)
 
         searchViewModel.drinksData.observe(viewLifecycleOwner, Observer {
@@ -43,12 +64,26 @@ class SearchResultsFragment : Fragment(),
                 this
             )
             recyclerView.adapter = adapter
-
+            isDoneLoading(false)
 
         })
         // Inflate the layout for this fragment
         return root
     }
+
+    private fun isDoneLoading(loading: Boolean) {
+        if(loading) {
+            recyclerView.visibility = View.INVISIBLE
+            loadingBar.visibility = View.VISIBLE
+
+        } else if(!loading){
+            recyclerView.visibility = View.VISIBLE
+            loadingBar.visibility = View.GONE
+        } else {
+            loadingBar.visibility = View.GONE
+        }
+    }
+
     override fun onDrinkItemClick(drink: DrinksDetails) {
         searchViewModel.selectedDrink.value = drink
         navController.navigate(R.id.action_searchResultsFragment_to_detailFragment2)

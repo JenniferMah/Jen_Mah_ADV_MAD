@@ -4,15 +4,14 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.happyhour.data.FavesRepo
-import com.example.happyhour.data.JokesDetails
-import com.example.happyhour.data.JokesRepo
+import com.example.happyhour.data.jokes.JokesDetails
+import com.example.happyhour.data.jokes.JokesRepo
 import com.example.happyhour.data.cocktail.DrinksDetails
 import com.example.happyhour.data.cocktail.DrinksRepository
 
 class SharedSearchViewModel(app: Application) : AndroidViewModel(app) {
 
-    private val drinksRepo =
-        DrinksRepository(app)
+    private val drinksRepo = DrinksRepository(app)
 
     val drinksData = drinksRepo.drinkData
     val selectedDrink = MutableLiveData<DrinksDetails>()
@@ -22,11 +21,9 @@ class SharedSearchViewModel(app: Application) : AndroidViewModel(app) {
     var currentJoke = JokesDetails("")
     val favesRepo = FavesRepo(app)
     val favDrinksList: MutableLiveData<List<DrinksDetails>> = favesRepo.favoriteList
-
-
+    //var loading = true
     init {
         userInputSearch.observeForever(drinksRepo.searchTermEntered)
-
     }
 
     fun getjoke(){

@@ -1,14 +1,11 @@
-package com.example.happyhour.data
+package com.example.happyhour.data.jokes
 
 import android.app.Application
 import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import com.example.happyhour.JOKES_BASE_URL
 import com.example.happyhour.LOG_TAG
-import com.example.happyhour.data.JokesDetails
-import com.example.happyhour.data.jokesDBService
 import com.example.happyhour.utils.NetworkHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

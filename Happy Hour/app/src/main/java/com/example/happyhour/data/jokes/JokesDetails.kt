@@ -1,4 +1,4 @@
-package com.example.happyhour.data
+package com.example.happyhour.data.jokes
 
 import com.squareup.moshi.JsonClass
 

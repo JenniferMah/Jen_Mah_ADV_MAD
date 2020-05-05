@@ -1,13 +1,11 @@
-package com.example.happyhour.data
+package com.example.happyhour.data.jokes
 
-import com.example.happyhour.data.cocktail.SearchResponse
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Query
 
 interface jokesDBService {
     //https://sv443.net/     jokeapi/v2/joke/Any?  contains=bar
-    @GET("jokeapi/v2/joke/Any?contains=bar")
+    @GET("jokeapi/v2/joke/Any?contains=drink")
     fun searchJokes(): Call<JokesDetails>
 }
 

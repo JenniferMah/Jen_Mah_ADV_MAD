@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.happyhour.R
 
+
 class DetailRecyclerAdapter(val context: Context, var drinkIngredientList: List<String>): RecyclerView.Adapter<DetailRecyclerAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val ingredientTextView: TextView = itemView.findViewById<TextView>(R.id.DrinkIngrdientTextView)

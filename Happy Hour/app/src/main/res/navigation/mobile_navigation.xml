@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchResultsFragment"
-        android:name="com.example.happyhour.ui.search.SearchResultsFragment"
+        android:name="com.example.happyhour.ui.search.results.SearchResultsFragment"
         android:label="Search Results"
         tools:layout="@layout/fragment_search_results" >
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/makeFragment"
-        android:name="com.example.happyhour.ui.details.makeFragment"
+        android:name="com.example.happyhour.ui.details.make.makeFragment"
         android:label=""
         tools:layout="@layout/fragment_make" >
         <action

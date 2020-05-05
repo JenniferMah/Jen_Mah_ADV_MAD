@@ -60,15 +60,13 @@ class FavoritesFragment : Fragment(),
     override fun onDrinkItemClick(drink: DrinksDetails) {
         //add toast
         val dialogBuilder = AlertDialog.Builder(requireContext())
-        dialogBuilder.setMessage("Do you want to remove this recipe from your favorites?")
+        dialogBuilder.setMessage("Do you want to remove this drink from your favorite drink list?")
             .setCancelable(false)
-            // positive button text and action
             .setPositiveButton("YES") { dialog, _ ->
                 sharedSearchViewModel.delete(drink.idDrink!!)
                 Toast.makeText(requireContext(),"Recipe removed from Favorites!", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             }
-            // negative button text and action
             .setNegativeButton("NO") {
                     dialog, _ -> dialog.cancel()
             }

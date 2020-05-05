@@ -30,6 +30,8 @@
             android:text="@string/title_text"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/drinkImageView" />
@@ -42,6 +44,8 @@
             android:layout_weight="1"
             android:text="@string/instructions"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#4D938D"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/TitleTextView" />
 
@@ -62,6 +66,7 @@
             android:id="@+id/MakeDrinkButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="#7EC7C0"
             android:text="@string/make"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

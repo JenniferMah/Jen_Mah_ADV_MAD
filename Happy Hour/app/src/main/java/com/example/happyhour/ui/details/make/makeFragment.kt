@@ -1,4 +1,4 @@
-package com.example.happyhour.ui.details
+package com.example.happyhour.ui.details.make
 
 import android.os.Bundle
 import android.view.*
@@ -23,6 +23,7 @@ class makeFragment : Fragment() {
     private lateinit var sharedSearchViewModel: SharedSearchViewModel
     var drinkInstructions = String()
     var drinkName = String()
+
 
 
     override fun onCreateView(

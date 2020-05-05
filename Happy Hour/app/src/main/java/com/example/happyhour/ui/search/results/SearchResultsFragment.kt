@@ -2,8 +2,6 @@ package com.example.happyhour.ui.search.results
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Handler
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,8 +19,6 @@ import com.example.happyhour.R
 import com.example.happyhour.data.cocktail.DrinksDetails
 import com.example.happyhour.ui.SharedSearchViewModel
 import com.example.happyhour.ui.search.SearchRecyclerAdapter
-import java.util.*
-import kotlin.concurrent.schedule
 
 /**
  * A simple [Fragment] subclass.
@@ -62,9 +58,7 @@ class SearchResultsFragment : Fragment(),
 
         searchViewModel.drinksData.observe(viewLifecycleOwner, Observer {
             var adapter = SearchRecyclerAdapter(requireContext(), listOf<DrinksDetails>(),this)
-
             if (it !=null ){
-                Log.i("TEST",it.toString())
                 adapter = SearchRecyclerAdapter(
                     requireContext(),
                     it,
@@ -72,10 +66,7 @@ class SearchResultsFragment : Fragment(),
                 )
 
             }else{
-                Handler().postDelayed({
-                    NotValid()
-                }, 1000)
-
+                notValidSearch()
             }
             isDoneLoading(false)
             recyclerView.adapter = adapter
@@ -85,9 +76,11 @@ class SearchResultsFragment : Fragment(),
         return root
     }
 
-    fun NotValid(){
+    private fun notValidSearch(){
         Toast.makeText(requireContext(),"No Cocktail Matching that Description", Toast.LENGTH_LONG).show()
+        searchViewModel.clear()
         navController.navigate(R.id.action_searchResultsFragment_to_searchFragment)
+
     }
     private fun isDoneLoading(loading: Boolean) {
         if(loading) {
@@ -105,8 +98,6 @@ class SearchResultsFragment : Fragment(),
     override fun onDrinkItemClick(drink: DrinksDetails) {
         searchViewModel.selectedDrink.value = drink
         navController.navigate(R.id.action_searchResultsFragment_to_detailFragment2)
-
-
     }
 
 }

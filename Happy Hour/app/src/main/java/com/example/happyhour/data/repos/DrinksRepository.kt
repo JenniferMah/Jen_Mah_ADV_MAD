@@ -1,4 +1,4 @@
-package com.example.happyhour.data.cocktail
+package com.example.happyhour.data.repos
 
 import android.app.Application
 import android.util.Log
@@ -7,17 +7,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.example.happyhour.DRINKS_BASE_URL
 import com.example.happyhour.LOG_TAG
+import com.example.happyhour.data.cocktail.DrinksDetails
+import com.example.happyhour.data.cocktail.cocktailDBService
 import com.example.happyhour.utils.NetworkHelper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import java.net.URLEncoder
 
 class DrinksRepository(val app: Application) {
-   // private val listType = Types.newParameterizedType(List::class.java, DrinksDetails::class.java)
-    val drinkData = MutableLiveData<List<DrinksDetails>>()
+   var drinkData = MutableLiveData<List<DrinksDetails>>()
 
     private var retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(DRINKS_BASE_URL)
@@ -45,7 +45,7 @@ class DrinksRepository(val app: Application) {
                 val responseBody = response.body()
                 drinkData.postValue(responseBody?.drinks?.toList() as List<DrinksDetails>?)
             } else {
-                Log.i("TEST", "Could not search drinks. Error code: ${response.code()}")
+                Log.i(LOG_TAG, "Could not search drinks. Error code: ${response.code()}")
             }
         }
     }

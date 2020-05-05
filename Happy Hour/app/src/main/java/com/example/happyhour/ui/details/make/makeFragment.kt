@@ -34,8 +34,11 @@ class makeFragment : Fragment() {
 
         sharedSearchViewModel.selectedDrink.observe(viewLifecycleOwner, Observer {
             //ADD NULL CHECK or elvis op
-            drinkInstructions = it.strInstructions!!
-            drinkName = it.strDrink.toString()
+            if(it != null){
+                drinkInstructions = it.strInstructions!!
+                drinkName = it.strDrink.toString()
+            }
+
             (activity as AppCompatActivity?)?.supportActionBar?.title = drinkName//These might have to change for favorites funcationalit
         })
 

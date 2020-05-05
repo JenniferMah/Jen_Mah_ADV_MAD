@@ -1,4 +1,4 @@
-package com.example.happyhour.data
+package com.example.happyhour.data.repos
 
 import android.app.Application
 import android.util.Log
